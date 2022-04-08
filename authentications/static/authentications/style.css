@@ -1,0 +1,29 @@
+body {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+form {
+    border-top: solid #5463FF 3px;
+}
+
+@keyframes example {
+    from {color: black;}
+    to {color: #270082;}
+}
+
+#title {
+    animation-name: example;
+    animation-duration: 4s;
+    color: #270082;
+    font-weight: bold;
+}
+
+
+#body-content {
+    background-color: #EEEEEE;
+    height: 100vh;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+}

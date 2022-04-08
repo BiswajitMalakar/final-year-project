@@ -1,0 +1,39 @@
+{% extends "authentications/layout.html" %}
+{% block title %}registration ⦁ looknearby{% endblock %}
+{% block body %}
+    <h1 style="color: #084594;" class="display-5">registration form</h1>
+    <form action="{% url "authentications:registration" %}" method="post">
+        <br>
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.first_name.label }}
+            {{ form.first_name }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.last_name.label }}
+            {{ form.last_name }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.username.label }}
+            {{ form.username }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.password1.label }}
+            {{ form.password1 }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.password2.label }}
+            {{ form.password2 }}
+        </div>
+        
+        <input type="submit" value="register" class="btn btn-outline-primary">
+    </form>
+
+    <p class="lead">
+        hey! already have an account? then <a href="{% url "authentications:login" %}">login</a> yourself.
+    </p>
+{% endblock %}

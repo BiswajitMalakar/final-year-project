@@ -1,0 +1,43 @@
+{% extends "authentications/layout.html" %}
+{% load static %}
+{% block title %}login ⦁ looknearby{% endblock %}
+
+{% block body %}
+    {% if messages %}
+        <div class="alert alert-primary" role="alert">
+            {% for message in messages %}
+            {{message}}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+    <h1 style="color: #084594;" class="display-5">Login page</h1>
+    
+    <form action="{% url "authentications:login" %}" method="post">
+        {% csrf_token %}
+        <br>
+        <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input type="text" name="username" placeholder="Username" id="username" class="form-control">
+        </div>
+
+        <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" name="password" placeholder="Password" id="password" aria-describedby="passwordHelp" class="form-control">
+        <div id="passwordHelp" class="form-text">Do not share your password with anyone!</div>
+        </div>
+
+        <input type="submit" value="login" class="btn btn-outline-primary">
+    </form>
+
+    {% if request.user.username %} 
+        <button>
+            <a href="{% url "authentications:logout" %}">Logout</a>
+        </button>
+    {% endif %}
+
+    <p class="lead">
+        hey! don't have an account? then <a class="link-primary" href="{% url "authentications:registration" %}">register</a> yourself.
+    </p>
+{% endblock %}

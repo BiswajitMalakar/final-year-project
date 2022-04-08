@@ -1,0 +1,156 @@
+{% extends "helloapp/layout.html" %}
+{% load static %}
+{% block title %}{{request.user.first_name}} {{request.user.last_name}} ⦁ looknearby{% endblock %}
+
+{% block body %} 
+
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <div style="margin-top: 20px; margin-bottom: 20px;">
+                    <h1 class="display-6" style="text-align: center;" id="title">looknearby</h1>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="position:absolute; right: 0px;">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url "helloapp:index" %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url "helloapp:profile" %}">Edit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "authentications:logout" %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+    <div id="profile-background">
+
+
+        <div class="flex-container">
+            <div class="flex-content">
+                {% if request.user.profile.first.profile_picture %}
+                    <img class="profile-picture" src="{{request.user.profile.first.profile_picture.url}}" alt="Image Not Found!" >
+                {% else %}
+                    <img class="profile-picture" src="{% static "helloapp/default_profile_picture.png" %}" alt="Image Not Found!" >
+                {% endif %}
+            </div>
+
+            <div class="flex-content">
+                <h2 id="user-name">{{request.user.first_name}} {{request.user.last_name}}</h2>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <div id="profile-bio">
+        <ul id="current-user-info">
+            {% if request.user.profile.first.bio %}
+                <li>{{request.user.profile.first.bio}}</li>
+            {% endif %}
+    
+            <li>{{request.user.first_name}} {{request.user.last_name}}</li>
+    
+            <li>{{request.user.username}}</li>
+    
+            {% if request.user.profile.first.gender %}
+                <li>{{request.user.profile.first.gender}}</li>
+            {% endif %}
+    
+            {% if request.user.profile.first.relationship %}
+                <li>{{request.user.profile.first.relationship}}</li>
+            {% endif %}
+        </ul>
+    </div>
+
+    
+
+
+
+
+    
+    <div id="profile-buttons">
+        <!-- 1st button to get user's current location -->
+        <button id="get-location">get my location</button>
+
+        <!-- this is the form to send user's current location to djago database -->
+        <form action="{% url "helloapp:index" %}" method="post" id="my-form">
+            {% csrf_token %}
+            <input type="text" name="latitude" id="lat" value="0" hidden>
+            <input type="text" name="longitude" id="lon" value="0" hidden>
+            <input type="submit" value="send your current location" id="send-your-current-location">
+        </form>
+
+        <!-- 3rd button to show nearby user's username and links to see about themselfs -->
+        <button id="show-people">Show people near you.</button>
+
+    </div>
+
+
+
+
+    <div id="other-people-list">
+        <!-- this is the list of all possible users -->
+        <ul id="people-list" style="display: none;"> 
+            {% for people in peoples %} 
+                <li><a href="{% url "helloapp:user_details" people %}">{{ people }}</a></li>
+            {% empty %}
+                <li>No one arround you</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    
+
+
+
+
+
+
+
+    <script>
+
+        document.querySelector('#get-location').onclick = function() {
+            if ( 'geolocation' in navigator ) {
+                console.log ("Geolocation is supported!");
+
+                navigator.geolocation.getCurrentPosition((position) => {
+                    document.querySelector('#lat').value = position.coords.latitude;
+                    document.querySelector('#lon').value = position.coords.longitude;
+                });
+
+            }
+            else {
+                console.log ("Geolocation is not supported!");
+            }
+        }
+
+
+
+        document.querySelector('#show-people').onclick = function() {
+            document.querySelector('#people-list').style.display = "block";
+        }
+        
+    </script>
+
+{% endblock %}

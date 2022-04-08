@@ -1,0 +1,26 @@
+{% extends "helloapp/layout.html" %}
+{% load static %}
+{% block title %} {% endblock %}
+{% block body %}
+    
+    {% if profile_picture %}
+    <img src="{{profile_picture.url}}" alt="Image Not Found!" style="width:200px">
+    {% else %}
+    <img src="{% static "helloapp/default_profile_picture.png" %}" alt="Image Not Found!" style="width:200px">
+    {% endif %}
+    <ul>
+        {% if profile_bio %}
+            <li>{{profile_bio}}</li>
+        {% endif %}
+
+        <li>{{user_first_name}} {{user_last_name}}</li>
+
+        {% if profile_gender %}
+            <li>{{profile_gender}}</li>
+        {% endif %}
+
+        {% if profile_relationship %}
+            <li>{{profile_relationship}}</li>
+        {% endif %}
+    </ul>
+{% endblock %}
