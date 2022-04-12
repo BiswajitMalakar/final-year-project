@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %} Edit Profile ⦁ looknearby{% endblock %}
 
+
 {% block body %} 
     {% if message %} 
         {{message}}
@@ -9,7 +10,8 @@
 
 
 
-
+    <!-- FOR STYLE -->
+    <!-- this is the naviagtion bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -40,7 +42,8 @@
 
 
 
-
+    <!-- this is the form that is for changing the profile details -->
+    <!-- FOR STYLE -->
     <form action="{% url "helloapp:profile" %}" enctype="multipart/form-data" method="post">
         {% csrf_token %}
         {% if request.user.profile.first.profile_picture %}
@@ -88,5 +91,7 @@
         <input type="submit" value="submit">
     </form>
 
+    <!-- FOR STYLE -->
+    <!-- this is the button to cancel the editing -->
     <a href="{% url "helloapp:index" %}"><button>cancel</button></a>
 {% endblock %}

@@ -21,3 +21,15 @@ class Location(models.Model):
 
     def __str__(self):
         return f"{self.user.username}"
+
+
+
+
+
+class Friend(models.Model):
+    sender = models.TextField(max_length=20)
+    receiver = models.TextField(max_length=20)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return f"{self.sender}"

@@ -1,10 +1,12 @@
+from django.dispatch import receiver
 from django.shortcuts import render, redirect
-from .models import Profile, Location
+from .models import Profile, Location, Friend
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 import math
 from django.urls import reverse
+from chat.models import Room
 
 
 
@@ -64,7 +66,12 @@ def index_view(request):
             else:
                 return HttpResponseRedirect(reverse("authentications:login"))
         else:
-            return render(request, "helloapp/index.html")
+            request_list = []
+            friend_requests = Friend.objects.filter(receiver=request.user.username)
+            for requests in friend_requests:
+                request_list.append(str(requests))
+            
+            return render(request, "helloapp/index.html", {"friend_request" : request_list})
 
 
 
@@ -126,8 +133,43 @@ def profile_view(request):
 
 
 def user_details_view(request, username):
+    if not request.user.is_authenticated:
+        return redirect('authentications:login')
+
     user = User.objects.get(username=username)
     profile = Profile.objects.get(user=user)
+
+
+    if request.method == 'POST':
+        sender = request.POST['sender']
+        receiver = request.POST['receiver']
+        
+        if not Friend.objects.filter(sender=sender, receiver=receiver).exists():
+
+            p1 = Location.objects.get(user = User.objects.get(username=sender))
+            p2 = Location.objects.get(user = User.objects.get(username=receiver))
+            lat1 = p1.latitude
+            lat2 = p2.latitude
+            lon1 = p1.longitude
+            lon2 = p2.longitude
+
+            d = distance(lat1, lon1, lat2, lon2)
+            
+            if d < 0.3:
+                friend = Friend()
+                friend.sender = sender
+                friend.receiver = receiver
+                friend.save()
+        
+        room_name = str(sender+receiver)
+        
+        if not Room.objects.filter(name=room_name).exists():
+            room = Room()
+            room.name = room_name
+            room.save()
+        
+
+
     return render(request, "helloapp/user_details.html", 
         {
             "profile_picture" : profile.profile_picture,
@@ -136,5 +178,6 @@ def user_details_view(request, username):
             "profile_relationship" : profile.relationship,
             "user_first_name" : user.first_name,
             "user_last_name" : user.last_name,
+            "username" : user.username,
         }
     )

@@ -3,6 +3,8 @@
 {% block title %}login ⦁ looknearby{% endblock %}
 
 {% block body %}
+
+    <!-- FOR STYLE -->
     {% if messages %}
         <div class="alert alert-primary" role="alert">
             {% for message in messages %}
@@ -11,9 +13,11 @@
         </div>
     {% endif %}
 
-
+    <!-- FOR STYLE -->
     <h1 style="color: #084594;" class="display-5">Login page</h1>
     
+
+    <!-- FOR STYLE -->
     <form action="{% url "authentications:login" %}" method="post">
         {% csrf_token %}
         <br>
@@ -31,12 +35,14 @@
         <input type="submit" value="login" class="btn btn-outline-primary">
     </form>
 
+    <!-- FOR STYLE -->
     {% if request.user.username %} 
         <button>
             <a href="{% url "authentications:logout" %}">Logout</a>
         </button>
     {% endif %}
 
+    <!-- FOR STYLE -->
     <p class="lead">
         hey! don't have an account? then <a class="link-primary" href="{% url "authentications:registration" %}">register</a> yourself.
     </p>

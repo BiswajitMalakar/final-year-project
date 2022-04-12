@@ -1,12 +1,14 @@
 {% extends "helloapp/layout.html" %}
 {% load static %}
+
 {% block title %}{{request.user.first_name}} {{request.user.last_name}} ⦁ looknearby{% endblock %}
 
 {% block body %} 
 
 
 
-
+    <!-- FOR STYLE -->
+    <!-- this is the navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
@@ -37,9 +39,31 @@
 
 
 
+    <!-- FOR STYLE -->
+    <!-- if anybody sends you friend request then this div is for that -->
+    <div>
 
+        {% if friend_request %}
+            <ul>
+            {% for friend in friend_request %}
+                
+                {% with friend|add:request.user.username as name %} 
+                    <li><a href="{% url "helloapp:user_details" friend %}">{{ friend }}</a> is asking you to chat. <a href="{% url "chat:room" name %}">let's chat</a></li>
+                {% endwith %}
+
+            {% endfor %}
+            </ul>
+        {% endif %}
+
+    </div>
+
+
+
+
+    <!-- FOR STYLE -->
+    <!-- this is for showing your profile picture and your name -->
+    <!-- DO NOT CHANGE THE ID -->
     <div id="profile-background">
-
 
         <div class="flex-container">
             <div class="flex-content">
@@ -55,14 +79,15 @@
             </div>
         </div>
 
-
     </div>
 
 
 
 
 
-
+    <!-- FOR STYLE -->
+    <!-- this is for showing your profile details -->
+    <!-- DO NOT CHANGE THE ID -->
     <div id="profile-bio">
         <ul id="current-user-info">
             {% if request.user.profile.first.bio %}
@@ -88,13 +113,15 @@
 
 
 
-    
+    <!-- FOR STYLE -->
+    <!-- these are three buttons to get, send your current location and button to show other people list -->
+    <!-- DO NOT CHANGE THE ID -->
     <div id="profile-buttons">
         <!-- 1st button to get user's current location -->
         <button id="get-location">get my location</button>
 
         <!-- this is the form to send user's current location to djago database -->
-        <form action="{% url "helloapp:index" %}" method="post" id="my-form">
+        <form id="my-form" method="post" action="{% url "helloapp:index" %}">
             {% csrf_token %}
             <input type="text" name="latitude" id="lat" value="0" hidden>
             <input type="text" name="longitude" id="lon" value="0" hidden>
@@ -109,6 +136,15 @@
 
 
 
+
+
+
+
+
+
+    <!-- FOR STYLE -->
+    <!-- this is a list that will show all the others people who are near you! -->
+    <!-- DO NOT CHANGE THE ID -->
     <div id="other-people-list">
         <!-- this is the list of all possible users -->
         <ul id="people-list" style="display: none;"> 
@@ -126,7 +162,7 @@
 
 
 
-
+    <!-- do not change this script tag -->
 
     <script>
 
