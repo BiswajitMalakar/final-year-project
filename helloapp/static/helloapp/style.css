@@ -34,14 +34,39 @@ body {
 
 
 
-
-#profile-background {
-    background-color: #E5E3C9;
+.friend-request-list {
+    background-color: #ECA6A6;
     height: fit-content;
     border-radius: 10px;
-    margin: 3px;
+    margin: 4px;
 }
 
+
+.friend-request-list > ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.chat-icon {
+    height: 25px;
+}
+
+.chat-request-name {
+    text-decoration: none;
+    color: #371B58;
+}
+
+#profile-background {
+    background-color: #ECA6A6;
+    height: fit-content;
+    border-radius: 10px;
+    margin: 4px;
+}
+
+
+#current-user-info > li {
+    text-align: justify;
+}
 
 
 #current-user-info {
@@ -49,27 +74,55 @@ body {
 }
 
 
+#get-location {
+    background-color: #FC4F4F;
+    padding: 5px;
+    border-radius: 10px;
+    color: #E9DAC1;
+    margin: 10px;
+}
+
+.send-location{
+    background-color: #FC4F4F;
+    padding: 5px;
+    border-radius: 10px;
+    color: #E9DAC1;
+    margin: 10px;
+}
+
+.send-location-input {
+    border : 0px;
+    background-color: #FC4F4F;
+    color: #E9DAC1;
+}
+
+
 
 #profile-bio {
-    background-color: #B4CFB0;
+    background-color: #ECA6A6;
     border-radius: 10px;
     padding: 10px;
-    margin: 3px;
+    margin: 4px;
 }
 
 
 #profile-buttons {
-    background-color: #94B49F;
+    background-color: #ECA6A6;
     border-radius: 10px;
-    margin: 3px;
+    margin: 4px;
 }
 
 
 
 #other-people-list {
-    background-color: #789395;
+    background-color: #ECA6A6;
     border-radius: 10px;
-    margin: 3px;
+    margin: 4px;
+}
+
+#other-people-list > ul {
+    list-style-type: none;
+    padding: 0px;
 }
 
 
@@ -77,6 +130,11 @@ body {
     list-style: none;
 }
 
+
+.chat-request-name > a {
+    text-decoration: none;
+    color: #371B58;
+}
 
 
 .flex-container {
@@ -116,3 +174,93 @@ body {
 
 
 
+
+/* modifing today 16th june, 2022 */
+
+.user-detail-list {
+    list-style-type: none;
+    padding: 0px;
+}
+
+body {
+    background-color: #827397;
+}
+
+.user-detail-picture {
+    background-color: #ECA6A6;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 4px;
+}
+
+.user-detail-list-div {
+    background-color: #ECA6A6;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 4px;
+}
+
+.user-detail-chat {
+    background-color: #ECA6A6;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 4px;
+}
+
+.ask-to-chat-button {
+    background-color: #FC4F4F;
+    padding: 5px;
+    border-radius: 10px;
+    color: #E9DAC1;
+    margin: 10px;
+}
+
+.lets-chat-button {
+    background-color: #2EB086;
+    padding: 5px;
+    border-radius: 10px;
+    color: #E9DAC1;
+    margin: 10px;
+}
+
+.lets-chat-button > a {
+    text-decoration: none;
+    color: #E9DAC1;
+}
+
+
+.submit-input {
+    background-color: #2EB086;
+    color: #E9DAC1;
+    border: 0px;
+}
+
+
+.user-edit-form {
+    text-align: justify;
+    background-color: #ECA6A6;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 4px;
+}
+
+
+.form-div {
+    margin: 15px;
+}
+
+.form-div > label {
+    color: #0000007a;
+}
+
+input {
+    border-radius: 10px;
+}
+
+.user-detail-list-div > ul > li {
+    text-align: justify;
+}
+
+.user-detail-list-div {
+    padding: 10px;
+}

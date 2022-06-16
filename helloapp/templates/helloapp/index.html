@@ -22,13 +22,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="position:absolute; right: 0px;">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{% url "helloapp:index" %}">Home</a>
+                        <a class="nav-link active" href="{% url "helloapp:index" %}">Home<img class="chat-icon" src="{% static "helloapp/home.svg" %}" alt=""></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="{% url "helloapp:profile" %}">Edit</a>
+                        <a class="nav-link" aria-current="page" href="{% url "helloapp:profile" %}">Edit<img class="chat-icon" src="{% static "helloapp/edit.svg" %}" alt=""></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "authentications:logout" %}">Logout</a>
+                        <a class="nav-link" href="{% url "authentications:logout" %}">Logout<img class="chat-icon" src="{% static "helloapp/logout.svg" %}" alt=""></a>
                     </li>
                 </ul>
             </div>
@@ -41,20 +41,18 @@
 
     <!-- FOR STYLE -->
     <!-- if anybody sends you friend request then this div is for that -->
-    <div>
-
+    <div class="friend-request-list">
         {% if friend_request %}
             <ul>
             {% for friend in friend_request %}
                 
                 {% with friend|add:request.user.username as name %} 
-                    <li><a href="{% url "helloapp:user_details" friend %}">{{ friend }}</a> is asking you to chat. <a href="{% url "chat:room" name %}">let's chat</a></li>
+                    <li><a class="chat-request-name" href="{% url "helloapp:user_details" friend %}">{{ friend }}</a> <a href="{% url "chat:room" name %}"><img class="chat-icon" src="{% static "helloapp/chat-icon.svg" %}" alt=""></a></li>
                 {% endwith %}
 
             {% endfor %}
             </ul>
         {% endif %}
-
     </div>
 
 
@@ -68,7 +66,7 @@
         <div class="flex-container">
             <div class="flex-content">
                 {% if request.user.profile.first.profile_picture %}
-                    <img class="profile-picture" src="{{request.user.profile.first.profile_picture.url}}" alt="Image Not Found!" >
+                    <img class="profile-picture"  src="{{request.user.profile.first.profile_picture.url}}" alt="Image Not Found!" >
                 {% else %}
                     <img class="profile-picture" src="{% static "helloapp/default_profile_picture.png" %}" alt="Image Not Found!" >
                 {% endif %}
@@ -91,19 +89,34 @@
     <div id="profile-bio">
         <ul id="current-user-info">
             {% if request.user.profile.first.bio %}
-                <li>{{request.user.profile.first.bio}}</li>
+                <li>
+                    <img class="chat-icon" src="{% static "helloapp/info.svg" %}" alt="">
+                    {{request.user.profile.first.bio}}
+                </li>
             {% endif %}
     
-            <li>{{request.user.first_name}} {{request.user.last_name}}</li>
+            <li>
+                <img class="chat-icon" src="{% static "helloapp/info.svg" %}" alt="">
+                {{request.user.first_name}} {{request.user.last_name}}
+            </li>
     
-            <li>{{request.user.username}}</li>
+            <li>
+                <img class="chat-icon" src="{% static "helloapp/info.svg" %}" alt="">
+                {{request.user.username}}
+            </li>
     
             {% if request.user.profile.first.gender %}
-                <li>{{request.user.profile.first.gender}}</li>
+                <li>
+                    <img class="chat-icon" src="{% static "helloapp/info.svg" %}" alt="">
+                    {{request.user.profile.first.gender}}
+                </li>
             {% endif %}
     
             {% if request.user.profile.first.relationship %}
-                <li>{{request.user.profile.first.relationship}}</li>
+                <li>
+                    <img class="chat-icon" src="{% static "helloapp/info.svg" %}" alt="">
+                    {{request.user.profile.first.relationship}}
+                </li>
             {% endif %}
         </ul>
     </div>
@@ -118,18 +131,31 @@
     <!-- DO NOT CHANGE THE ID -->
     <div id="profile-buttons">
         <!-- 1st button to get user's current location -->
-        <button id="get-location">get my location</button>
+        <button id="get-location">
+            <img class="chat-icon" src="{% static "helloapp/location.svg" %}" alt="">
+            get my location
+        </button>
+
+        <div><img class="chat-icon" src="{% static "helloapp/more.svg" %}" alt=""></div>
 
         <!-- this is the form to send user's current location to djago database -->
         <form id="my-form" method="post" action="{% url "helloapp:index" %}">
             {% csrf_token %}
             <input type="text" name="latitude" id="lat" value="0" hidden>
             <input type="text" name="longitude" id="lon" value="0" hidden>
-            <input type="submit" value="send your current location" id="send-your-current-location">
+            <button class="send-location">
+                <img class="chat-icon" src="{% static "helloapp/nearme.svg" %}" alt="">
+                <input class="send-location-input" type="submit" value="send my location" id="send-your-current-location">
+            </button>
         </form>
 
+        <div><img class="chat-icon" src="{% static "helloapp/more.svg" %}" alt=""></div>
+
         <!-- 3rd button to show nearby user's username and links to see about themselfs -->
-        <button id="show-people">Show people near you.</button>
+        <button id="show-people" class="send-location">
+            <img class="chat-icon" src="{% static "helloapp/show.svg" %}" alt="">
+            show people near me
+        </button>
 
     </div>
 
@@ -149,7 +175,7 @@
         <!-- this is the list of all possible users -->
         <ul id="people-list" style="display: none;"> 
             {% for people in peoples %} 
-                <li><a href="{% url "helloapp:user_details" people %}">{{ people }}</a></li>
+                <li class="chat-request-name"><a href="{% url "helloapp:user_details" people %}"><img class="chat-icon" src="{% static "helloapp/person.svg" %}" alt="">{{ people }}</a></li>
             {% empty %}
                 <li>No one arround you</li>
         {% endfor %}
