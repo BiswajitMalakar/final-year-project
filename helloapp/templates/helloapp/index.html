@@ -90,31 +90,31 @@
         <ul id="current-user-info">
             {% if request.user.profile.first.bio %}
                 <li>
-                    <img class="chat-icon" src="{% static "helloapp/info.svg" %}" alt="">
+                    <img class="chat-icon" src="{% static "helloapp/public.svg" %}" alt="">
                     {{request.user.profile.first.bio}}
                 </li>
             {% endif %}
     
             <li>
-                <img class="chat-icon" src="{% static "helloapp/info.svg" %}" alt="">
+                <img class="chat-icon" src="{% static "helloapp/public.svg" %}" alt="">
                 {{request.user.first_name}} {{request.user.last_name}}
             </li>
     
             <li>
-                <img class="chat-icon" src="{% static "helloapp/info.svg" %}" alt="">
+                <img class="chat-icon" src="{% static "helloapp/public.svg" %}" alt="">
                 {{request.user.username}}
             </li>
     
             {% if request.user.profile.first.gender %}
                 <li>
-                    <img class="chat-icon" src="{% static "helloapp/info.svg" %}" alt="">
+                    <img class="chat-icon" src="{% static "helloapp/public.svg" %}" alt="">
                     {{request.user.profile.first.gender}}
                 </li>
             {% endif %}
     
             {% if request.user.profile.first.relationship %}
                 <li>
-                    <img class="chat-icon" src="{% static "helloapp/info.svg" %}" alt="">
+                    <img class="chat-icon" src="{% static "helloapp/public.svg" %}" alt="">
                     {{request.user.profile.first.relationship}}
                 </li>
             {% endif %}
@@ -133,7 +133,7 @@
         <!-- 1st button to get user's current location -->
         <button id="get-location">
             <img class="chat-icon" src="{% static "helloapp/location.svg" %}" alt="">
-            get my location
+           GET LOCATION
         </button>
 
         <div><img class="chat-icon" src="{% static "helloapp/more.svg" %}" alt=""></div>
@@ -145,7 +145,7 @@
             <input type="text" name="longitude" id="lon" value="0" hidden>
             <button class="send-location">
                 <img class="chat-icon" src="{% static "helloapp/nearme.svg" %}" alt="">
-                <input class="send-location-input" type="submit" value="send my location" id="send-your-current-location">
+                <input class="send-location-input" type="submit" value="SEND LOCATION" id="send-your-current-location">
             </button>
         </form>
 
@@ -154,7 +154,7 @@
         <!-- 3rd button to show nearby user's username and links to see about themselfs -->
         <button id="show-people" class="send-location">
             <img class="chat-icon" src="{% static "helloapp/show.svg" %}" alt="">
-            show people near me
+            SHOW PEOPLE
         </button>
 
     </div>

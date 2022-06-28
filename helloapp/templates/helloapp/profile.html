@@ -54,41 +54,41 @@
             {% endif %}
             <br>
             <label for="profile_picture">upload a new profile picture</label>
-            <input type="file" name="profile_picture">
+            <input class="input" type="file" name="profile_picture">
         </div>
 
         
         <div class="form-div">
             <label for="first_name">First Name </label>
             <br>
-            <input type="text" name="first_name" value="{{request.user.first_name}}" placeholder="First Name">
+            <input class="input" type="text" name="first_name" value="{{request.user.first_name}}" placeholder="First Name">
         </div>
 
         <div class="form-div">
             <label for="last_name">Last Name </label>
             <br>
-            <input type="text" name="last_name" value="{{request.user.last_name}}" placeholder="Last Name">
+            <input class="input" type="text" name="last_name" value="{{request.user.last_name}}" placeholder="Last Name">
         </div>
       
 
         <div class="form-div">
             <label for="username">Username </label>
             <br>
-            <input type="text" name="username" value="{{request.user.username}}" placeholder="Username">
+            <input class="input" type="text" name="username" value="{{request.user.username}}" placeholder="Username">
         </div>
        
 
         <div class="form-div">
             <label for="bio">Bio </label>
             <br>
-            <textarea style="border-radius: 10px;" name="bio" cols="20" rows="4" >{{request.user.profile.first.bio}}</textarea>
+            <textarea class="input" style="border-radius: 10px;" name="bio" cols="20" rows="4" >{{request.user.profile.first.bio}}</textarea>
         </div>
         
 
         <div class="form-div">
             <label for="gender">Gender </label>
             <br>
-            <select name="gender" style="border-radius: 10px;">
+            <select class="input" name="gender" style="border-radius: 10px;">
                 <option value="{{request.user.profile.first.gender}}" selected>{{request.user.profile.first.gender}}(selected)</option>
                 <option value="female">Female</option>
                 <option value="male">Male</option>
@@ -101,7 +101,7 @@
         <div class="form-div">
             <label for="relationship">Relationship Status </label>
             <br>
-            <select name="relationship" style="border-radius: 10px;">
+            <select class="input" name="relationship" style="border-radius: 10px;">
                 <option value="{{request.user.profile.first.relationship}}">{{request.user.profile.first.relationship}}(selected)</option>
                 <option value="single">Single</option>
                 <option value="in a relationship">In a relationship</option>
@@ -116,7 +116,7 @@
        <div class="form-div">
             <label for="email">Email </label>
             <br>
-            <input type="text" name="email" value="{{request.user.email}}" placeholder="Email id">
+            <input class="input" type="text" name="email" value="{{request.user.email}}" placeholder="Email id">
        </div>
        
 
@@ -124,7 +124,9 @@
             <img class="chat-icon" src="{% static "helloapp/save.svg" %}" alt="">
             <input class="submit-input" type="submit" value="save">
         </button>
+
     </form>
+
 
     <!-- FOR STYLE -->
     <!-- this is the button to cancel the editing -->

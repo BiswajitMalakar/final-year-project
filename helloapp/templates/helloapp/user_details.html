@@ -89,16 +89,23 @@
                 {% csrf_token %}
                 <input type="text" name="sender" value="{{ request.user.username }}" hidden>
                 <input type="text" name="receiver" value="{{ username }}" hidden>
-                <input type="submit" value="ask to chat" class="ask-to-chat-button">
+                <button class="send-location">
+                    <img class="chat-icon" src="{% static "helloapp/add.svg" %}" alt="">
+                    <input type="submit" value="BE FRIENDS" class="send-location-input">
+                </button>    
             </form>
         </div>
+
+        
+        <div><img class="chat-icon" src="{% static "helloapp/more.svg" %}" alt=""></div>
 
         
         <!-- this is a link to chat with persion -->
         <!-- FOR STYLE -->
         {% with request.user.username|add:username as name %}
-            <button class="lets-chat-button">
-                <a href="{% url "chat:room" name  %}">Send a DM</a>
+            <button class="send-location">
+                <img class="chat-icon" src="{% static "helloapp/chat-icon.svg" %}" alt="">
+                <a style="text-decoration: none; color:black" href="{% url "chat:room" name  %}">SEND DM</a>
             </button>
         {% endwith %}
     </div>
