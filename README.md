@@ -3,12 +3,13 @@
 
 ## This web app let's you see and chat with people arround you within 300 meters, helps you to start conversation with strangers.
 
-## Technologies beight used :
+## Technologies being used :
   - Python
   - Django
   - HTML
   - CSS
   - JavaScript
+  - AJAX
   - MySql
   etc...
 
@@ -18,4 +19,4 @@
 ## User Guide : 
   - Clone this project
   - Run command ```python manage.py runserver``` in `Final-Year-Project` folder.
-  - Open browser and go ```http://127.0.0.1:8000/```
+  - Open browser and go to ```http://127.0.0.1:8000/``` url.
