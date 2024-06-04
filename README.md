@@ -1,4 +1,4 @@
-# Final-Year-Project
+# Looknearby
 ### A project on social communication system
 
 ## This web app let's you see and chat with people arround you within 300 meters, helps you to start conversation with strangers.
